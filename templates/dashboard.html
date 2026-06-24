@@ -1,0 +1,10 @@
+﻿{% extends \"base.html\" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome, {{ current_user.username }}!</h2><hr>
+<div class=\"row mt-4\">
+    <div class=\"col-md-4\"><div class=\"card\"><div class=\"card-body\"><h5>Vote</h5><a href=\"{{ url_for('voter.vote') }}\" class=\"btn btn-success\">Vote Now</a></div></div></div>
+    <div class=\"col-md-4\"><div class=\"card\"><div class=\"card-body\"><h5>Results</h5><a href=\"#\" class=\"btn btn-info\">View</a></div></div></div>
+    <div class=\"col-md-4\"><div class=\"card\"><div class=\"card-body\"><h5>Profile</h5><a href=\"#\" class=\"btn btn-warning\">Edit</a></div></div></div>
+</div>
+{% endblock %}

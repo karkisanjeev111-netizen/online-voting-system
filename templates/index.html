@@ -1,0 +1,18 @@
+﻿{% extends \"base.html\" %}
+{% block title %}Home - Online Voting System{% endblock %}
+{% block content %}
+<div class=\"text-center mt-5\">
+    <h1 class=\"display-4\">Welcome to Online Voting System</h1>
+    <p class=\"lead\">Secure, transparent, and efficient digital voting</p>
+    {% if not current_user.is_authenticated %}
+        <div class=\"mt-4\">
+            <a href=\"{{ url_for('auth.register') }}\" class=\"btn btn-primary btn-lg me-2\">Register</a>
+            <a href=\"{{ url_for('auth.login') }}\" class=\"btn btn-outline-primary btn-lg\">Login</a>
+        </div>
+    {% else %}
+        <div class=\"mt-4\">
+            <a href=\"{{ url_for('voter.dashboard') }}\" class=\"btn btn-primary btn-lg\">Dashboard</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
