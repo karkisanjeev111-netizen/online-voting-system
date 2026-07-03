@@ -32,3 +32,10 @@ def admin_dashboard():
                            candidates_count=candidates_count,
                            voters_count=voters_count,
                            votes_count=votes_count)
+
+@admin_bp.route('/elections')
+@login_required
+@admin_required
+def manage_elections():
+    elections = Election.query.order_by(Election.created_at.desc()).all()
+    return render_template('admin/manage_elections.html', elections=elections)
