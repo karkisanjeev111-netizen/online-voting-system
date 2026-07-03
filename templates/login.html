@@ -1,24 +1,70 @@
-﻿{% extends \"base.html\" %}
-{% block title %}Login{% endblock %}
+﻿{% extends "base.html" %}
+{% block title %}Login - Online Voting System{% endblock %}
 {% block content %}
-<div class=\"row justify-content-center mt-5\">
-    <div class=\"col-md-5\">
-        <div class=\"card\">
-            <div class=\"card-body\">
-                <h2 class=\"text-center mb-4\">Login</h2>
-                <form method=\"POST\">
-                    <div class=\"mb-3\">
-                        <label class=\"form-label\">Email</label>
-                        <input type=\"email\" name=\"email\" class=\"form-control\" required>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div class="display-4 mb-2">🔐</div>
+                    <h2 class="fw-bold">Welcome Back!</h2>
+                    <p class="text-muted">Login to access your voting dashboard</p>
+                </div>
+                
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-envelope"></i> Email Address
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">📧</span>
+                            <input type="email" name="email" class="form-control" 
+                                   placeholder="Enter your email" required autofocus>
+                        </div>
                     </div>
-                    <div class=\"mb-3\">
-                        <label class=\"form-label\">Password</label>
-                        <input type=\"password\" name=\"password\" class=\"form-control\" required>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-lock"></i> Password
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">🔒</span>
+                            <input type="password" name="password" class="form-control" 
+                                   placeholder="Enter your password" required>
+                        </div>
                     </div>
-                    <button type=\"submit\" class=\"btn btn-primary w-100\">Login</button>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="remember">
+                        <label class="form-check-label" for="remember">Remember me</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 btn-lg rounded-pill">
+                        🔓 Login to Account
+                    </button>
                 </form>
-                <p class=\"text-center mt-3\">No account? <a href=\"{{ url_for('auth.register') }}\">Register</a></p>
+                
+                <div class="text-center mt-4">
+                    <p class="mb-0">Don't have an account? 
+                        <a href="{{ url_for('auth.register') }}" class="fw-bold text-decoration-none">
+                            Create New Account
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <small class="text-muted">
+                        🔒 Secure login • Your data is protected
+                    </small>
+                </div>
             </div>
+        </div>
+        
+        <!-- Admin Info -->
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                Admin? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Login here</a> with your admin credentials
+            </small>
         </div>
     </div>
 </div>
