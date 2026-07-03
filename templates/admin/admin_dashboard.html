@@ -1,10 +1,17 @@
-﻿{% extends \"base.html\" %}
+﻿{% extends "base.html" %}
 {% block title %}Admin Dashboard{% endblock %}
 {% block content %}
-<h2>Admin Dashboard</h2><hr>
-<div class=\"row\">
-    <div class=\"col-md-3\"><div class=\"card\"><div class=\"card-body\"><h5>Elections</h5><a href=\"#\" class=\"btn btn-primary btn-sm\">Manage</a></div></div></div>
-    <div class=\"col-md-3\"><div class=\"card\"><div class=\"card-body\"><h5>Candidates</h5><a href=\"#\" class=\"btn btn-primary btn-sm\">Manage</a></div></div></div>
-    <div class=\"col-md-3\"><div class=\"card\"><div class=\"card-body\"><h5>Voters</h5><a href=\"#\" class=\"btn btn-primary btn-sm\">Manage</a></div></div></div>
+<h2>⚙️ Admin Dashboard</h2><hr>
+<div class="row text-center">
+    <div class="col-md-3"><div class="card bg-primary text-white mb-3"><div class="card-body"><h3>{{ elections_count }}</h3><p>Elections</p></div></div></div>
+    <div class="col-md-3"><div class="card bg-success text-white mb-3"><div class="card-body"><h3>{{ candidates_count }}</h3><p>Candidates</p></div></div></div>
+    <div class="col-md-3"><div class="card bg-info text-white mb-3"><div class="card-body"><h3>{{ voters_count }}</h3><p>Voters</p></div></div></div>
+    <div class="col-md-3"><div class="card bg-warning text-white mb-3"><div class="card-body"><h3>{{ votes_count }}</h3><p>Votes</p></div></div></div>
+</div>
+<div class="row">
+    <div class="col-md-3"><a href="{{ url_for('admin.manage_elections') }}" class="btn btn-primary w-100 mb-2">📋 Elections</a></div>
+    <div class="col-md-3"><a href="{{ url_for('admin.manage_candidates') }}" class="btn btn-success w-100 mb-2">👥 Candidates</a></div>
+    <div class="col-md-3"><a href="{{ url_for('admin.manage_voters') }}" class="btn btn-info w-100 mb-2">👤 Voters</a></div>
+    <div class="col-md-3"><a href="{{ url_for('admin.view_results') }}" class="btn btn-warning w-100 mb-2">📊 Results</a></div>
 </div>
 {% endblock %}
