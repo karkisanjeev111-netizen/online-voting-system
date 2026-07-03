@@ -1,18 +1,72 @@
-﻿{% extends \"base.html\" %}
+﻿{% extends "base.html" %}
 {% block title %}Home - Online Voting System{% endblock %}
 {% block content %}
-<div class=\"text-center mt-5\">
-    <h1 class=\"display-4\">Welcome to Online Voting System</h1>
-    <p class=\"lead\">Secure, transparent, and efficient digital voting</p>
+<div class="text-center mt-5">
+    <div class="mb-4">
+        <h1 class="display-3 fw-bold">🗳️ Online Voting System</h1>
+        <p class="lead fs-4">Your Vote, Your Voice, Your Future</p>
+        <p class="text-muted">Secure • Transparent • Efficient • Digital Voting Platform</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row mt-5 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body">
+                    <div class="display-6 mb-3">🔒</div>
+                    <h5 class="card-title">Secure Voting</h5>
+                    <p class="card-text">Your vote is encrypted and protected with advanced security measures. One vote per voter guaranteed.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-success">
+                <div class="card-body">
+                    <div class="display-6 mb-3">⚡</div>
+                    <h5 class="card-title">Fast & Easy</h5>
+                    <p class="card-text">Vote from anywhere, anytime. Simple and intuitive interface for a seamless voting experience.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-info">
+                <div class="card-body">
+                    <div class="display-6 mb-3">📊</div>
+                    <h5 class="card-title">Real-time Results</h5>
+                    <p class="card-text">Track election results in real-time with transparent counting and detailed statistics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
     {% if not current_user.is_authenticated %}
-        <div class=\"mt-4\">
-            <a href=\"{{ url_for('auth.register') }}\" class=\"btn btn-primary btn-lg me-2\">Register</a>
-            <a href=\"{{ url_for('auth.login') }}\" class=\"btn btn-outline-primary btn-lg\">Login</a>
+        <div class="mt-4 p-5 bg-light rounded-3">
+            <h3>Ready to Make a Difference?</h3>
+            <p class="fs-5">Join thousands of voters and participate in shaping the future.</p>
+            <div class="mt-4">
+                <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg me-3 px-4">📝 Register Now</a>
+                <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-lg px-4">🔐 Login</a>
+            </div>
         </div>
     {% else %}
-        <div class=\"mt-4\">
-            <a href=\"{{ url_for('voter.dashboard') }}\" class=\"btn btn-primary btn-lg\">Dashboard</a>
+        <div class="mt-4 p-5 bg-light rounded-3">
+            <h3>Welcome Back, {{ current_user.username }}! 👋</h3>
+            <p class="fs-5">Ready to cast your vote and make your voice heard?</p>
+            <div class="mt-4">
+                <a href="{{ url_for('voter.dashboard') }}" class="btn btn-primary btn-lg px-4">📊 Go to Dashboard</a>
+                <a href="{{ url_for('voter.vote') }}" class="btn btn-success btn-lg px-4 ms-2">🗳️ Vote Now</a>
+            </div>
         </div>
     {% endif %}
+
+    <!-- Stats Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <p class="text-muted">
+                <small>🔐 Secure Authentication • 📱 Mobile Friendly • 🌍 Accessible Anywhere • 📈 Live Updates</small>
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}
