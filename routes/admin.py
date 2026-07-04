@@ -8,6 +8,7 @@ from models.user import User
 from models.vote import Vote
 from datetime import datetime
 
+
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -17,7 +18,9 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+
 admin_bp = Blueprint('admin', __name__)
+
 
 @admin_bp.route('/dashboard')
 @login_required
@@ -27,31 +30,70 @@ def admin_dashboard():
     candidates_count = Candidate.query.count()
     voters_count = User.query.filter_by(is_admin=False).count()
     votes_count = Vote.query.count()
-    return render_template('admin/admin_dashboard.html',
-                           elections_count=elections_count,
-                           candidates_count=candidates_count,
-                           voters_count=voters_count,
-                           votes_count=votes_count)
+
+    return render_template(
+        'admin/admin_dashboard.html',
+        elections_count=elections_count,
+        candidates_count=candidates_count,
+        voters_count=voters_count,
+        votes_count=votes_count
+    )
+
 
 @admin_bp.route('/elections')
 @login_required
 @admin_required
 def manage_elections():
     elections = Election.query.order_by(Election.created_at.desc()).all()
-    @admin_bp.route('/elections/create', methods=['GET', 'POST'])
+    return render_template('admin/manage_elections.html', elections=elections)
+
+
+@admin_bp.route('/elections/create', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def create_election():
     if request.method == 'POST':
         title = request.form.get('title')
         description = request.form.get('description')
-        start_date = datetime.strptime(request.form.get('start_date'), '%Y-%m-%dT%H:%M')
-        end_date = datetime.strptime(request.form.get('end_date'), '%Y-%m-%dT%H:%M')
-        election = Election(title=title, description=description,
-                            start_date=start_date, end_date=end_date)
+
+        start_date = datetime.strptime(
+            request.form.get('start_date'),
+            '%Y-%m-%dT%H:%M'
+        )
+
+        end_date = datetime.strptime(
+            request.form.get('end_date'),
+            '%Y-%m-%dT%H:%M'
+        )
+
+        election = Election(
+            title=title,
+            description=description,
+            start_date=start_date,
+            end_date=end_date
+        )
+
         db.session.add(election)
         db.session.commit()
+
         flash('Election created successfully!', 'success')
         return redirect(url_for('admin.manage_elections'))
+
     return render_template('admin/create_election.html')
-    return render_template('admin/manage_elections.html', elections=elections)
+
+
+@admin_bp.route('/elections/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def edit_election(id):
+    election = Election.query.get_or_404(id)
+    if request.method == 'POST':
+        election.title = request.form.get('title')
+        election.description = request.form.get('description')
+        election.start_date = datetime.strptime(request.form.get('start_date'), '%Y-%m-%dT%H:%M')
+        election.end_date = datetime.strptime(request.form.get('end_date'), '%Y-%m-%dT%H:%M')
+        election.is_active = 'is_active' in request.form
+        db.session.commit()
+        flash('Election updated.', 'success')
+        return redirect(url_for('admin.manage_elections'))
+    return render_template('admin/edit_election.html', election=election)
