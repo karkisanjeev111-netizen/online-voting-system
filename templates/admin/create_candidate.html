@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Add Candidate{% endblock %}
+{% block content %}
+<h2>👤 Add Candidate</h2><hr>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Party (optional)</label>
+        <input type="text" name="party" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Election</label>
+        <select name="election_id" class="form-control" required>
+            <option value="">Select Election</option>
+            {% for e in elections %}
+            <option value="{{ e.id }}">{{ e.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Candidate</button>
+    <a href="{{ url_for('admin.manage_candidates') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
