@@ -58,3 +58,7 @@
 .alert {
     opacity: 0.95;
 }
+
+.alert {
+    border-radius: 10px;
+}
