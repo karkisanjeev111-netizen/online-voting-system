@@ -45,3 +45,7 @@
 .form-control {
     padding: 10px;
 }
+
+.form-control {
+    border-radius: 8px;
+}
