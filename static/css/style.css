@@ -1,3 +1,4 @@
-﻿body { background-color: #f8f9fa; }
-.footer { position: fixed; bottom: 0; width: 100%; }
-.card { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+﻿.btn:hover {
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
