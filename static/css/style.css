@@ -21,3 +21,7 @@
 .navbar {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
 }
+
+.navbar {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
