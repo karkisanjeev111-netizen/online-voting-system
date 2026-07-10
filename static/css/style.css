@@ -82,3 +82,9 @@ h1, h2, h3 {
 .form-control {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
