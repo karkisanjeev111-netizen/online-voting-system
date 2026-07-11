@@ -92,3 +92,7 @@ h1, h2, h3 {
 body {
     min-height: 100vh;
 }
+
+body {
+    background-color: #f4f6f9;
+}
