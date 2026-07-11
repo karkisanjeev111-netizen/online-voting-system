@@ -96,3 +96,7 @@ body {
 body {
     background-color: #f4f6f9;
 }
+
+.table {
+    border: 1px solid #dee2e6;
+}
