@@ -108,3 +108,7 @@ body {
 .table td, .table th {
     border-bottom: 1px solid #e9ecef;
 }
+
+.navbar-nav {
+    list-style: none;
+}
