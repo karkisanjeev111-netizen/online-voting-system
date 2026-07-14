@@ -109,6 +109,14 @@ body {
     border-bottom: 1px solid #e9ecef;
 }
 
+.table td, .table th {
+    padding: 12px 15px;
+}
+
 .navbar-nav {
     list-style: none;
+}
+
+.container-fluid {
+    max-width: 1400px;
 }
